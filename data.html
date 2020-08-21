@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+<div id = "data"></div>
+
+<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-app.js"></script><!-- Add additional services you want to use -->
+
+<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-functions.js"></script>
+<script>
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCPTkM2YrSEBzyQBQLS5h4tn3DgKvFY_3o",
+    authDomain: "clone-9c020.firebaseapp.com",
+    databaseURL: "https://clone-9c020.firebaseio.com",
+    projectId: "clone-9c020",
+    storageBucket: "clone-9c020.appspot.com",
+    messagingSenderId: "912353856821",
+    appId: "1:912353856821:web:df93f677d40b388f0b507c",
+    measurementId: "G-5H5V20K7P2"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  var ref = firebase.database().ref(); 
+  ref.on("value", function(snapshot) { 
+  		snapshot.forEach(function(childSnapshot) { 
+  					document.getElementById("data").innerHTML += "Key : " + childSnapshot.child("key").val() + "<br>Password : " + childSnapshot.child("password").val() + "<br><br>";
+  					var childData = childSnapshot.child("key").val(); 
+  					var id=childData.id;
+  					console.log(childData); 
+  					}); });
+  
+  
+  </script>
+</body>
+</html>
